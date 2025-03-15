@@ -1,4 +1,5 @@
 import random
+import sys
 # Preguntas para el juego
 questions = [
 "¿Qué función se usa para obtener la longitud de una cadena en Python?",
@@ -35,7 +36,14 @@ for i, answer in enumerate(answers[question_index]):
 
 # El usuario tiene 2 intentos para responder correctamente
 for intento in range(2):
-    user_answer = int(input("Respuesta: ")) - 1
+    try:
+        user_answer = int(input("Respuesta: "))
+        if user_answer < 1 or user_answer > 4:
+            print("Respuesta no válida")
+            sys.exit(1)
+    except ValueError:
+        print("Respuesta no válida")
+        sys.exit(1)
     
 # Se verifica si la respuesta es correcta
     if user_answer == correct_answers_index[question_index]:
