@@ -27,6 +27,7 @@ correct_answers_index = [1, 2, 0, 3, 1]
 #crea una nueva lista con la pregunta, la respuesta y el indice de la respuesta correcta, haciendolo de forma random.
 questions_to_ask = random.sample(list(zip(questions, answers, correct_answers_index)), k=3)
 
+puntaje = 0
 # El usuario deberá contestar 3 preguntas
 for pregunta, opciones, correcta in questions_to_ask:
 # Se selecciona una pregunta aleatoria
@@ -41,15 +42,19 @@ for pregunta, opciones, correcta in questions_to_ask:
         user_answer = int(input("Respuesta: "))
         if user_answer < 1 or user_answer > 4:
             print("Respuesta no válida")
-            exit()
+            exit(1)
         
     # Se verifica si la respuesta es correcta
         if user_answer -1 == correcta:
             print("¡Correcto!")
+            puntaje += 1
             break
         else:
     # Si el usuario no responde correctamente después de 2 intentos,
     # se muestra la respuesta correcta
             print("Incorrecto. La respuesta correcta es:")
+            puntaje += -0.5
     # Se imprime un blanco al final de la pregunta
     print()
+
+print('el puntaje es: ', puntaje)
