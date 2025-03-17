@@ -39,11 +39,11 @@ for pregunta, opciones, correcta in questions_to_ask:
 
     # El usuario tiene 2 intentos para responder correctamente
     for intento in range(2):
-        user_answer = int(input("Respuesta: "))
-        if user_answer < 1 or user_answer > 4:
+        user_answer = input("Respuesta: ")
+        if user_answer.isdigit() == False or int(user_answer) < 1 or int(user_answer) > 4:
             print("Respuesta no válida")
             exit(1)
-        
+        user_answer = int(user_answer)
     # Se verifica si la respuesta es correcta
         if user_answer -1 == correcta:
             print("¡Correcto!")
@@ -52,9 +52,11 @@ for pregunta, opciones, correcta in questions_to_ask:
         else:
     # Si el usuario no responde correctamente después de 2 intentos,
     # se muestra la respuesta correcta
-            print("Incorrecto. La respuesta correcta es:")
-            puntaje += -0.5
+            print("Incorrecto.")
+            if intento == 1:
+                print("La respuesta correcta era:", correcta + 1)
+                puntaje -= 0.5  # solo descuenta si falló ambos intentos
     # Se imprime un blanco al final de la pregunta
-    print()
+print()
 
 print('el puntaje es: ', puntaje)
